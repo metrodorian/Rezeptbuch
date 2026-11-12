@@ -30,22 +30,14 @@
   emoji: "🍚"
   kurz: Cremiges Grundrezept mit drei Varianten
   bild: assets/bilder/risotto.jpg
-  bildtext: Kürbisrisotto in der Pfanne
-  foto: DuncanHarris
-  lizenz: CC BY-SA 3.0
-  lizenz_url: https://creativecommons.org/licenses/by-sa/3.0/
-  quelle: https://commons.wikimedia.org/wiki/File:Squash_Risotto.jpg
+  bildtext: Risotto mit grünem Spargel
 
 - slug: 04_beef_jerky
   titel: Beef Jerky
   emoji: "🥩"
   kurz: Rindfleisch aus dem Dörrgerät, sicher vorerhitzt
   bild: assets/bilder/jerky.jpg
-  bildtext: Beef Jerky beim Trocknen
-  foto: Stefano A.
-  lizenz: CC BY 2.0
-  lizenz_url: https://creativecommons.org/licenses/by/2.0/
-  quelle: https://commons.wikimedia.org/wiki/File:Beef_jerky_being_dried.jpg
+  bildtext: Beef Jerky
 
 - slug: 05_ichiju_sansai
   titel: Ichiju-Sansai
