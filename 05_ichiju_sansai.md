@@ -4,7 +4,7 @@ Ein klassisches japanisches Frühstück folgt einem einfachen Muster: **Ichiju-S
 
 | Menge | Zeit | Herd |
 |-------|------|------|
-| 2 Personen | ca. 35 Minuten | 2 Platten und 1 Pfanne |
+| 2 Personen | ca. 30 Minuten | Reiskocher, 1 Platte und 1 Pfanne |
 
 ---
 
@@ -12,12 +12,12 @@ Ein klassisches japanisches Frühstück folgt einem einfachen Muster: **Ichiju-S
 
 | Minute | Schritt |
 |--------|---------|
-| 0–5 | Reis waschen und aufsetzen. Lachs salzen, Gurke salzen. |
+| 0–5 | Reis waschen und in den Reiskocher. Lachs salzen, Gurke salzen. |
 | 5–10 | Wakame einweichen, Dashi aufsetzen. |
-| 10–20 | Tamagoyaki backen, danach die Gurke ausdrücken und anmachen. |
-| 20–28 | Lachs braten. Der Reis ruht jetzt. |
-| 28–32 | Tofu in die Suppe, Herd aus, Miso einrühren. |
-| 32–35 | Alles in kleinen Schalen anrichten. |
+| 10–18 | Tamagoyaki backen, danach die Gurke ausdrücken und anmachen. |
+| 18–25 | Lachs braten. |
+| 25–28 | Tofu in die Suppe, Herd aus, Miso einrühren. |
+| 28–30 | Alles in kleinen Schalen anrichten. |
 
 ---
 
@@ -32,9 +32,9 @@ Ein klassisches japanisches Frühstück folgt einem einfachen Muster: **Ichiju-S
 
 1. Den Reis in einer Schüssel mit kaltem Wasser waschen, dabei mit der Hand umrühren. Das trübe Wasser abgießen und 3–4 Mal wiederholen, bis es fast klar bleibt.
 2. In einem Sieb kurz abtropfen lassen.
-3. Mit den 260 ml Wasser in einen Topf mit gut schließendem Deckel geben und aufkochen.
-4. Auf kleinster Hitze **12 Minuten zugedeckt** garen. Den Deckel dabei nicht anheben.
-5. Den Herd ausschalten und den Reis **10 Minuten zugedeckt ruhen** lassen. Dann mit einem nassen Spatel locker auflockern.
+3. Mit den 260 ml Wasser in den **Reiskocher** geben und das Programm für weißen Reis starten. Ist er fertig, mit einem nassen Spatel locker auflockern.
+
+**Ohne Reiskocher:** Reis und Wasser in einem Topf mit gut schließendem Deckel aufkochen, auf kleinster Hitze 12 Minuten zugedeckt garen und danach 10 Minuten zugedeckt ruhen lassen. Den Deckel dabei nicht anheben. Das dauert etwas länger als im Zeitplan.
 
 ---
 
@@ -122,7 +122,7 @@ Jedes Teil kommt in eine eigene kleine Schale: links der Reis, rechts die Suppe,
 > **💡 Gut zu wissen**
 >
 > - **Miso nie kochen.** Kocht die Suppe nach dem Einrühren auf, wird das Miso körnig und verliert sein Aroma. Deshalb kommt es erst zum Schluss, bei ausgeschaltetem Herd, hinein.
-> - **Reis und Wasser im Verhältnis 1 : 1,3** (nach Gewicht). Ein Reiskocher macht das von selbst, im Topf sorgt der fest geschlossene Deckel für das Gelingen.
+> - **Reis und Wasser im Verhältnis 1 : 1,3** (nach Gewicht). Im Reiskocher passt auch die Markierung für die passende Bechermenge.
 > - **Glutenfrei:** Tamari statt Sojasauce nehmen. Beim Miso zu Reis-Miso (*Kome-Miso*) greifen, denn Gersten-Miso (*Mugi-Miso*) enthält Gluten. Auch Instant-Dashi enthält manchmal Weizen, ein Blick auf die Packung lohnt sich.
 > - **Vegetarisch:** Statt Lachs gebratene Tofuscheiben mit etwas Sojasauce. Für die Suppe dann Kombu-Dashi nehmen, denn normales Dashi wird aus Bonitoflocken gekocht.
 > - **Dashi selbst gemacht:** Ein handtellergroßes Stück Kombu 30 Minuten in 500 ml Wasser einweichen und langsam erhitzen. Kurz vor dem Kochen den Kombu herausnehmen, 5 EL Bonitoflocken (eine große Handvoll) dazugeben, 2 Minuten ziehen lassen und abseihen.
@@ -131,7 +131,7 @@ Jedes Teil kommt in eine eigene kleine Schale: links der Reis, rechts die Suppe,
 
 ## 📦 Auf einen Blick
 
-- **Reis:** 200 g Rundkornreis waschen, mit 260 ml Wasser aufkochen, 12 Minuten garen, 10 Minuten ruhen.
+- **Reis:** 200 g Rundkornreis waschen, mit 260 ml Wasser in den Reiskocher.
 - **Suppe:** 400 ml Dashi, Tofu und Wakame. Herd aus, dann 2 EL Miso einrühren.
 - **Lachs:** salzen, abtupfen, auf der Hautseite knusprig braten.
 - **Tamagoyaki:** 3 Eier in dünnen Schichten aufrollen. **Gurke:** salzen, ausdrücken, anmachen.
