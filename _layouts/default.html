@@ -352,8 +352,8 @@
     <footer class="fuss">
       <a href="https://github.com/metrodorian/Rezeptbuch">Auf GitHub ansehen</a>
       <p class="bildnachweis">Fotos via Wikimedia Commons:
-        {%- capture nachweise -%}{%- for r in rezepte -%}{%- if r.foto -%}{{ r.bildtext }} von <a href="{{ r.quelle }}">{{ r.foto }}</a> (<a href="{{ r.lizenz_url }}">{{ r.lizenz }}</a>)|{%- endif -%}{%- endfor -%}{%- endcapture %}
-        {{ nachweise | split: "|" | join: ", " }}. Zugeschnitten und verkleinert.</p>
+        {%- capture nachweise -%}{%- for r in rezepte -%}{%- if r.foto -%}, {{ r.bildtext }} von <a href="{{ r.quelle }}">{{ r.foto }}</a> (<a href="{{ r.lizenz_url }}">{{ r.lizenz }}</a>){%- endif -%}{%- endfor -%}{%- endcapture %}
+        {{ nachweise | remove_first: ", " }}. Zugeschnitten und verkleinert.</p>
     </footer>
 
     <script>
