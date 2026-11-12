@@ -162,6 +162,12 @@
         box-shadow: inset 0 0 0 2px #fff;
       }
       .hinweis-abhaken { font-size: .85rem; color: var(--leise); margin: -.2rem 0 .4rem; }
+      /* Nur im Heimmonitor: Zutaten auf die Einkaufsliste in Microsoft To Do */
+      .einkauf { display: flex; align-items: center; gap: .8rem; flex-wrap: wrap; margin: -.4rem 0 1.2rem; }
+      .einkauf .knopf { display: inline-flex; }
+      .einkauf span { font-size: .88rem; color: var(--leise); }
+      .einkauf span.gut { color: var(--gruen-dunkel); font-weight: 600; }
+      .einkauf span.schlecht { color: #b42318; }
 
       /* Kurzinfo und andere Tabellen */
       .inhalt table {
@@ -196,7 +202,7 @@
       .karten {
         display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; margin: 0 0 2.2rem;
       }
-      @media (min-width: 1200px) { .karten { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+      @media (min-width: 1200px) { .karten { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
       @media (max-width: 520px) { .karten { grid-template-columns: minmax(0, 1fr); } }
       .karte {
         display: flex; flex-direction: column; background: var(--karte); border: 1px solid var(--linie);
@@ -260,7 +266,7 @@
       @media print {
         @page { size: A4; margin: 1.8cm 2cm; }
         body { background: #fff; font-size: 11pt; }
-        .kopf, .leiste, .weiter, .fuss, .hinweis-abhaken { display: none !important; }
+        .kopf, .leiste, .weiter, .fuss, .hinweis-abhaken, .einkauf { display: none !important; }
         .raster { display: block; padding: 0; max-width: none; }
         .titelbild img { max-height: 8cm; box-shadow: none; }
         .inhalt table, .inhalt ul.zutaten, .karte { box-shadow: none; }
@@ -357,6 +363,8 @@
         var koepfe = [].slice.call(text.querySelectorAll("h2[id], h3[id]")).filter(function (h) {
           return h.offsetParent !== null;
         });
+        // Bei vielen Teilrezepten nur die Hauptabschnitte, sonst wird die Liste zu lang.
+        if (koepfe.length > 10) koepfe = koepfe.filter(function (h) { return h.tagName === "H2"; });
         var liste = document.getElementById("abschnitte");
         if (koepfe.length > 1 && !document.body.classList.contains("startseite")) {
           koepfe.forEach(function (h) {
@@ -396,6 +404,75 @@
             if (li) li.classList.toggle("erledigt");
           });
         });
+
+        // Einkaufsliste: nur im Heimmonitor. Die Seite liegt auf https, der Pi
+        // spricht http - sie fragt darum das Panel, in dessen Rahmen sie
+        // steckt. Antwortet es auf "hallo", gibt es den Knopf. Mit kommen nur
+        // die angehakten Zutaten - man tippt an, was fehlt.
+        var panel = null, nummer = 0, warten = {};
+        function einkaufKnoepfe() {
+          var rezept = (text.querySelector("h1") || {}).textContent || document.title;
+          rezept = rezept.replace(/^[^A-Za-zÀ-ÿ]+/, "").trim();
+          [].forEach.call(text.querySelectorAll("ul.zutaten"), function (ul) {
+            var zeile = document.createElement("div");
+            zeile.className = "einkauf";
+            var knopf = document.createElement("button");
+            knopf.className = "knopf voll";
+            knopf.textContent = "🛒 Auf die Einkaufsliste";
+            var meldung = document.createElement("span");
+            meldung.textContent = "nur angehakte Zutaten kommen mit";
+            var hinweis = ul.previousElementSibling;
+            if (hinweis && hinweis.classList.contains("hinweis-abhaken"))
+              hinweis.textContent = "Antippen, was eingekauft werden muss";
+            zeile.appendChild(knopf);
+            zeile.appendChild(meldung);
+            ul.parentNode.insertBefore(zeile, ul.nextSibling);
+            knopf.addEventListener("click", function () {
+              var zutaten = [].filter.call(ul.children, function (li) {
+                return li.classList.contains("erledigt");
+              }).map(function (li) {
+                // Klammerzusätze wie „(etwa 1 kleine)" braucht der Einkaufszettel nicht.
+                return li.textContent.replace(/\s*\([^)]*\)/g, "").trim();
+              });
+              if (!zutaten.length) { meldung.textContent = "erst antippen, was fehlt"; return; }
+              knopf.disabled = true;
+              meldung.className = "";
+              meldung.textContent = "wird eingetragen … (Microsoft braucht manchmal eine halbe Minute)";
+              nummer += 1;
+              warten[nummer] = function (e) {
+                knopf.disabled = false;
+                if (e.fehler) {
+                  meldung.className = "schlecht";
+                  meldung.textContent = "Nicht eingetragen: " + e.fehler;
+                  return;
+                }
+                // Eingetragen - die Haken sind damit erledigt.
+                [].forEach.call(ul.querySelectorAll("li.erledigt"), function (li) {
+                  li.classList.remove("erledigt");
+                });
+                meldung.className = "gut";
+                meldung.textContent = "✓ " + e.neu.length + " auf „" + e.liste + "“"
+                  + (e.schon_da.length ? ", " + e.schon_da.length
+                     + (e.schon_da.length === 1 ? " stand" : " standen") + " schon drauf" : "");
+              };
+              panel.quelle.postMessage({ typ: "einkauf", nummer: nummer, rezept: rezept,
+                                         zutaten: zutaten }, panel.herkunft);
+            });
+          });
+        }
+        window.addEventListener("message", function (ereignis) {
+          if (ereignis.source !== window.parent || window.parent === window) return;
+          var d = ereignis.data || {};
+          if (d.typ === "einkauf-bereit" && !panel) {
+            panel = { quelle: ereignis.source, herkunft: ereignis.origin };
+            einkaufKnoepfe();
+          } else if (d.typ === "einkauf-ergebnis" && panel && ereignis.origin === panel.herkunft
+                     && warten[d.nummer]) {
+            warten[d.nummer](d);
+            delete warten[d.nummer];
+          }
+        });
+        if (window.parent !== window) window.parent.postMessage({ typ: "rezeptbuch-hallo" }, "*");
 
         // Breite Tabellen auf dem Handy seitlich rollen statt die Seite zu sprengen.
         [].forEach.call(text.querySelectorAll("table"), function (t) {

@@ -36,6 +36,7 @@ CHAPTERS = [
     "02_bolognese",
     "03_risotto",
     "04_beef_jerky",
+    "05_ichiju_sansai",
 ]
 
 # ── gemeinsames Stylesheet (Bildschirm + Druck identisch) ─────────────────────
