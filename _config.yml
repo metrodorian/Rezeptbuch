@@ -1,0 +1,5 @@
+theme: jekyll-theme-cayman
+title: "Rezeptbuch"
+description: "Unsere Lieblingsrezepte, alles in Gramm abgewogen, glutenfrei möglich, zum Nachkochen und Ausdrucken."
+baseurl: "/Rezeptbuch"
+url: "https://metrodorian.github.io"
