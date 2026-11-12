@@ -20,7 +20,7 @@ Damit du dich schnell zurechtfindest, folgt jedes Rezept demselben Muster:
 
 | # | Rezept | Worum geht's? |
 |---|--------|---------------|
-| 1 | [Pizzateig fürs Blech](01_pizzateig.md) | Glutenfrei mit Schär Mix It! Universal oder klassisch mit Weizenmehl |
+| 1 | [Pizzateig fürs Blech](01_pizzateig.md) | Glutenfrei mit Schär Mix It! Universal |
 | 2 | [Ragù alla Bolognese](02_bolognese.md) | Das Original aus Bologna: viel Fleisch, wenig Tomate, lange Garzeit |
 | 3 | [Klassisches Risotto](03_risotto.md) | Cremiges Grundrezept mit drei Varianten |
 | 4 | [Beef Jerky](04_beef_jerky.md) | Rindfleisch aus dem Dörrgerät, sicher vorerhitzt |

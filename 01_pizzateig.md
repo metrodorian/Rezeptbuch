@@ -1,18 +1,16 @@
 # 🍕 Pizzateig fürs Blech
 
-Ein Teig für ein ganzes Backblech, belegt nach Lust und Laune. Es gibt ihn in zwei Varianten: **glutenfrei** mit Schär Mix It! Universal und **klassisch** mit Weizenmehl. Die beiden verhalten sich ganz unterschiedlich, deshalb hat jede ihre eigene Anleitung.
-
-| Menge | Zeit | Ofen |
-|-------|------|------|
-| 1 Blech (ca. 40 × 30 cm) | ca. 1½ Stunden, davon 20 Minuten Arbeit | 220–250 °C Ober-/Unterhitze |
-
----
-
-## Variante A: Glutenfrei mit Schär Mix It! Universal
+Ein **glutenfreier** Teig mit Schär Mix It! Universal für ein ganzes Backblech, belegt nach Lust und Laune.
 
 Ohne Gluten bildet sich kein elastisches Teiggerüst. Der Teig braucht deshalb **deutlich mehr Wasser**, bleibt weich und klebrig und lässt sich nicht ausziehen. Das ist kein Fehler, sondern so gewollt.
 
-### Zutaten
+| Menge | Zeit | Ofen |
+|-------|------|------|
+| 1 Blech (ca. 40 × 30 cm) | ca. 1 Stunde, davon 15 Minuten Arbeit | 220 °C Ober-/Unterhitze |
+
+---
+
+## Zutaten
 
 - 400 g Schär Mix It! Universal
 - 320–360 ml lauwarmes Wasser (erst 320 ml nehmen, dann nach Bedarf nachgießen)
@@ -22,7 +20,7 @@ Ohne Gluten bildet sich kein elastisches Teiggerüst. Der Teig braucht deshalb *
 - 3 EL Olivenöl
 - optional: 1 TL gemahlene Flohsamenschalen
 
-### Zubereitung
+## Zubereitung
 
 1. Alle Zutaten 3–5 Minuten mit dem Knethaken verrühren. Der Teig soll weich und leicht klebrig sein, fast streichfähig.
 2. Abgedeckt 30–45 Minuten an einem warmen Ort gehen lassen. Er geht weniger auf als Weizenteig, das ist normal.
@@ -40,42 +38,8 @@ Ohne Gluten bildet sich kein elastisches Teiggerüst. Der Teig braucht deshalb *
 
 ---
 
-## Variante B: Klassisch mit Weizenmehl
-
-### Zutaten
-
-- 400 g Mehl (Tipo 00 oder Type 550)
-- 260 ml lauwarmes Wasser
-- 1½ TL Salz
-- 1 TL Trockenhefe oder gut 1 TL frische Hefe, zerbröckelt
-- 2 EL Olivenöl
-
-### Zubereitung
-
-1. Die Hefe im Wasser auflösen. Das Mehl dazugeben und kurz verrühren, dann Salz und Öl unterkneten.
-2. Etwa 10 Minuten kneten, bis der Teig glatt und elastisch ist.
-3. Abgedeckt 1–2 Stunden bei Zimmertemperatur gehen lassen, bis sich das Volumen verdoppelt hat.
-4. Das Blech mit Öl einfetten. Den Teig mit geölten Fingern bis in die Ecken drücken. Zieht er sich zusammen, 10 Minuten ruhen lassen und noch einmal versuchen.
-5. Auf dem Blech weitere 20–30 Minuten gehen lassen.
-6. Belegen und bei 250 °C im unteren Drittel des Ofens 12–15 Minuten backen. Den Käse erst nach 5 Minuten daraufgeben, sonst wird er zu dunkel.
-
-### Dünner oder dicker Boden
-
-| Boden | Mehl | Wasser | Salz | Trockenhefe |
-|-------|------|--------|------|-------------|
-| Dünn und knusprig | 300 g | 195 ml | 1 TL | ¾ TL |
-| Mitteldick (Standard) | 400 g | 260 ml | 1½ TL | 1 TL |
-| Dick und fluffig, wie vom Bäcker | 500 g | 325 ml | 2 TL | 1¼ TL |
-
-> **💡 Gut zu wissen: kalte Gare**
->
-> Für mehr Geschmack nimmst du nur **⅓ TL Trockenhefe** und lässt den Teig nach dem Kneten **24–72 Stunden im Kühlschrank** reifen. Hol ihn 2 Stunden vor dem Backen heraus. Er wird aromatischer, bekömmlicher und lässt sich leichter aufs Blech drücken.
-
----
-
 ## 📦 Auf einen Blick
 
-- **Glutenfrei:** 400 g Schär Universal, 320–360 ml Wasser, 1 Päckchen Trockenhefe. Weich verrühren, flach drücken, 8–10 Minuten vorbacken.
-- **Weizen:** 400 g Mehl, 260 ml Wasser, 1 TL Trockenhefe. 10 Minuten kneten, gehen lassen, ins geölte Blech drücken.
-- **Salz:** in beiden Varianten 1½ TL.
-- **Heiß backen,** den Käse erst spät auflegen.
+- **Teig:** 400 g Schär Universal, 320–360 ml Wasser, 1½ TL Salz, 1 Päckchen Trockenhefe. Weich verrühren, 30–45 Minuten gehen lassen.
+- **Aufs Blech:** mit nassen Händen flach drücken und 8–10 Minuten bei 220 °C vorbacken.
+- **Belegen** und weitere 10–15 Minuten backen, bis der Rand goldbraun ist.
