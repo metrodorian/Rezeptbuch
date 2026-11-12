@@ -41,7 +41,7 @@ Das cremige Grundrezept aus Norditalien. Es schmeckt pur oder als Basis für vie
 
 ## Varianten
 
-- **Risotto ai funghi:** 20 g getrocknete Steinpilze in warmem Wasser einweichen. Das Einweichwasser durch einen Kaffeefilter gießen und als Teil der Brühe verwenden. Die Pilze hacken und mit 200 g frischen Champignons zum Soffritto geben.
+- **Risotto ai funghi:** 8 EL getrocknete Steinpilze (eine große Handvoll) in warmem Wasser einweichen. Das Einweichwasser durch einen Kaffeefilter gießen und als Teil der Brühe verwenden. Die Pilze hacken und mit 200 g frischen Champignons zum Soffritto geben.
 - **Risotto al limone:** Bei der Mantecatura den Abrieb und den Saft einer Bio-Zitrone einrühren und dafür etwas weniger Parmesan nehmen.
 - **Risotto al radicchio:** Einen Radicchio in Streifen schneiden und mit dem Soffritto anschwitzen. Mit Rotwein statt Weißwein ablöschen.
 

@@ -16,8 +16,8 @@ Ohne Gluten bildet sich kein elastisches Teiggerüst. Der Teig braucht deshalb *
 
 - 400 g Schär Mix It! Universal
 - 320–360 ml lauwarmes Wasser (erst 320 ml nehmen, dann nach Bedarf nachgießen)
-- 8 g Salz (etwa 1½ gestrichene Teelöffel)
-- 1 Päckchen Trockenhefe (7 g) oder ½ Würfel frische Hefe
+- 1½ TL Salz
+- 1 Päckchen Trockenhefe (gut 2 TL) oder ½ Würfel frische Hefe
 - 1 TL Zucker
 - 3 EL Olivenöl
 - optional: 1 TL gemahlene Flohsamenschalen
@@ -46,8 +46,8 @@ Ohne Gluten bildet sich kein elastisches Teiggerüst. Der Teig braucht deshalb *
 
 - 400 g Mehl (Tipo 00 oder Type 550)
 - 260 ml lauwarmes Wasser
-- 8 g Salz (etwa 1½ gestrichene Teelöffel)
-- 3 g Trockenhefe oder 6 g frische Hefe
+- 1½ TL Salz
+- 1 TL Trockenhefe oder gut 1 TL frische Hefe, zerbröckelt
 - 2 EL Olivenöl
 
 ### Zubereitung
@@ -61,23 +61,21 @@ Ohne Gluten bildet sich kein elastisches Teiggerüst. Der Teig braucht deshalb *
 
 ### Dünner oder dicker Boden
 
-| Boden | Mehl | Wasser | Salz |
-|-------|------|--------|------|
-| Dünn und knusprig | 300 g | 195 ml | 6 g |
-| Mitteldick (Standard) | 400 g | 260 ml | 8 g |
-| Dick und fluffig, wie vom Bäcker | 500 g | 325 ml | 10 g |
-
-Die Hefe passt du im selben Verhältnis an.
+| Boden | Mehl | Wasser | Salz | Trockenhefe |
+|-------|------|--------|------|-------------|
+| Dünn und knusprig | 300 g | 195 ml | 1 TL | ¾ TL |
+| Mitteldick (Standard) | 400 g | 260 ml | 1½ TL | 1 TL |
+| Dick und fluffig, wie vom Bäcker | 500 g | 325 ml | 2 TL | 1¼ TL |
 
 > **💡 Gut zu wissen: kalte Gare**
 >
-> Für mehr Geschmack nimmst du nur **1 g Trockenhefe** und lässt den Teig nach dem Kneten **24–72 Stunden im Kühlschrank** reifen. Hol ihn 2 Stunden vor dem Backen heraus. Er wird aromatischer, bekömmlicher und lässt sich leichter aufs Blech drücken.
+> Für mehr Geschmack nimmst du nur **⅓ TL Trockenhefe** und lässt den Teig nach dem Kneten **24–72 Stunden im Kühlschrank** reifen. Hol ihn 2 Stunden vor dem Backen heraus. Er wird aromatischer, bekömmlicher und lässt sich leichter aufs Blech drücken.
 
 ---
 
 ## 📦 Auf einen Blick
 
-- **Glutenfrei:** 400 g Schär Universal, 320–360 ml Wasser, 7 g Trockenhefe. Weich verrühren, flach drücken, 8–10 Minuten vorbacken.
-- **Weizen:** 400 g Mehl, 260 ml Wasser, 3 g Trockenhefe. 10 Minuten kneten, gehen lassen, ins geölte Blech drücken.
-- **Salz:** 8 g sind etwa 1½ gestrichene Teelöffel.
+- **Glutenfrei:** 400 g Schär Universal, 320–360 ml Wasser, 1 Päckchen Trockenhefe. Weich verrühren, flach drücken, 8–10 Minuten vorbacken.
+- **Weizen:** 400 g Mehl, 260 ml Wasser, 1 TL Trockenhefe. 10 Minuten kneten, gehen lassen, ins geölte Blech drücken.
+- **Salz:** in beiden Varianten 1½ TL.
 - **Heiß backen,** den Käse erst spät auflegen.

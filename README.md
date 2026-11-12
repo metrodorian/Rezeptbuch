@@ -11,7 +11,7 @@ Gute Rezepte gehen leicht verloren. Mal steht eines auf einem Zettel, mal in ein
 Damit du dich schnell zurechtfindest, folgt jedes Rezept demselben Muster:
 
 - **Kurzinfo oben:** Menge, Zeitbedarf und Temperatur auf einen Blick.
-- **Zutaten in Gramm:** Gewogen gelingt es zuverlässiger als mit Tassen und Löffeln. Wo ein Löffel genügt, steht er dabei.
+- **Zutaten in Gramm, kleine Mengen in Löffeln:** Ab 50 g wird gewogen, das gelingt zuverlässiger. Alles darunter steht in Teelöffeln (TL, der kleine Löffel) und Esslöffeln (EL, der große Löffel), immer gestrichen.
 - **Zubereitung in nummerierten Schritten:** Ein Schritt, eine Handlung.
 - **💡 Gut zu wissen:** Kniffe, typische Fehler und Varianten.
 - **📦 Auf einen Blick:** das Wichtigste in drei, vier Sätzen, für den Blick zwischendurch mit Teig an den Händen.
@@ -37,4 +37,4 @@ Nicht jeder hat eine Küchenwaage zur Hand. Diese Werte helfen beim Abschätzen:
 | Trockenhefe | 3 g | 9 g |
 | Olivenöl | 4 ml | 12–15 ml |
 
-1 Päckchen Trockenhefe enthält 7 g und ersetzt etwa einen halben Würfel frische Hefe (21 g).
+1 Päckchen Trockenhefe entspricht gut 2 TL und ersetzt etwa einen halben Würfel frische Hefe.
