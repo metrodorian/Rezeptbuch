@@ -1,211 +1,394 @@
 <!DOCTYPE html>
+{%- assign rezepte = site.data.rezepte -%}
+{%- assign current = page.name | remove: ".md" -%}
+{%- assign startseite = false -%}{%- if current == "README" or current == "index" -%}{%- assign startseite = true -%}{%- endif -%}
+{%- assign curpos = -1 -%}
+{%- for r in rezepte -%}{%- if r.slug == current -%}{%- assign curpos = forloop.index0 -%}{%- assign rezept = r -%}{%- endif -%}{%- endfor -%}
 <html lang="de">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ site.title }}</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap">
-    <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+    <title>{% if rezept %}{{ rezept.titel }} · {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap">
     <style>
-      .page-header .project-name a {
-        color: inherit;
-        text-decoration: none;
+      :root {
+        --papier: #fbf6ee;
+        --karte: #ffffff;
+        --tinte: #2b2118;
+        --leise: #75685c;
+        --linie: #eadfce;
+        --tomate: #c4441c;
+        --tomate-dunkel: #9c3412;
+        --basilikum: #4d7c2a;
+        --zitrone: #fff4d6;
+        --zitrone-rand: #f0c95a;
+        --schatten: 0 1px 2px rgba(60, 40, 20, .06), 0 8px 24px rgba(60, 40, 20, .08);
+        --rund: 14px;
       }
-      .page-header .project-name a:hover {
-        text-decoration: underline;
-        opacity: 0.85;
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--papier);
+        color: var(--tinte);
+        font: 17px/1.6 "Source Sans 3", -apple-system, "Segoe UI", Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
       }
-      .main-content img {
-        max-width: 100%;
-        border-radius: 0.4rem;
+      a { color: var(--tomate); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+      a:hover { color: var(--tomate-dunkel); }
+
+      /* ── Kopf ─────────────────────────────────────────────────────────── */
+      .kopf {
+        background: linear-gradient(135deg, #3b2a1d 0%, #5b3a22 55%, #7a4421 100%);
+        color: #fff8ee;
+        padding: 1.4rem 1.25rem 1.5rem;
       }
-      /* In den Fließtext eingebundene Bilder (umflossen, abwechselnd) */
-      .main-content figure { margin: 0; }
-      .main-content figure.img-right,
-      .main-content figure.img-left {
-        max-width: 45%;
-        margin: 0.4rem 0 1rem;
+      .kopf-innen { max-width: 74rem; margin: 0 auto; display: flex; align-items: center; gap: 1rem; }
+      .kopf .marke {
+        font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 2rem;
+        color: inherit; text-decoration: none; letter-spacing: -.01em; line-height: 1.1;
       }
-      .main-content figure.img-right { float: right; margin-left: 1.5rem; }
-      .main-content figure.img-left  { float: left;  margin-right: 1.5rem; }
-      .main-content figure img { width: 100%; display: block; }
-      .main-content figure.hero { float: none; max-width: 100%; margin: 0.5rem 0 1.6rem; }
-      .main-content figcaption {
-        font-size: 0.85rem;
-        color: #57606a;
-        line-height: 1.35;
-        margin-top: 0.35rem;
+      .kopf .marke:hover { color: #ffe2c4; }
+      .kopf p { margin: .2rem 0 0; color: #f3dcc4; font-size: 1rem; }
+      .kopf .topf { font-size: 2.6rem; line-height: 1; }
+
+      /* ── Seitenraster: Inhalt links, Inhaltsangabe rechts ─────────────── */
+      .raster {
+        max-width: 74rem; margin: 0 auto; padding: 2rem 1.25rem 3rem;
+        display: grid; grid-template-columns: minmax(0, 1fr) 17rem; gap: 2.5rem;
+        align-items: start;
       }
-      /* Neuer Abschnitt beginnt immer unterhalb umflossener Bilder */
-      .main-content h2, .main-content h3 { clear: both; }
-      @media (max-width: 600px) {
-        .main-content figure.img-right,
-        .main-content figure.img-left { float: none; max-width: 100%; margin: 1.1rem 0; }
+      .inhalt { min-width: 0; }
+      .leiste {
+        position: sticky; top: 1.25rem; display: flex; flex-direction: column; gap: 1rem;
+        max-height: calc(100vh - 2.5rem); overflow-y: auto; padding: 0 .4rem .4rem; margin: 0 -.4rem;
       }
-      .print-buttons {
-        margin-top: 3rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid #dce6f0;
+      .kasten {
+        background: var(--karte); border: 1px solid var(--linie); border-radius: var(--rund);
+        box-shadow: var(--schatten); padding: 1rem;
       }
-      .btn-row {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
+      .kasten h2 {
+        font: 700 .78rem/1 "Source Sans 3", sans-serif; letter-spacing: .12em;
+        text-transform: uppercase; color: var(--leise); margin: .1rem 0 .8rem;
       }
-      .btn-row + .btn-row { margin-top: 0.8rem; }
-      .print-btn {
-        display: inline-block;
-        padding: 0.6rem 1.3rem;
-        background: #159957;
-        color: #fff;
-        border-radius: 0.3rem;
-        font-size: 0.95rem;
-        text-decoration: none;
-        cursor: pointer;
-        border: none;
+      .rezeptliste { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .35rem; }
+      .rezeptliste a {
+        display: flex; align-items: center; gap: .7rem; padding: .35rem; border-radius: 10px;
+        color: var(--tinte); text-decoration: none; line-height: 1.25; font-weight: 600;
       }
-      .print-btn:hover { background: #0f7a3e; color: #fff; text-decoration: none; }
-      .print-btn.secondary { background: #555; }
-      .print-btn.secondary:hover { background: #333; }
-      .print-btn.next { margin-left: auto; background: #1f6feb; font-weight: 700; }
-      .print-btn.next:hover { background: #1a5fd0; }
-      @media (max-width: 480px) {
-        .print-btn.next { margin-left: 0; }
+      .rezeptliste a:hover { background: #f7efe3; }
+      .rezeptliste a.aktuell { background: #fbe6dc; color: var(--tomate-dunkel); }
+      .rezeptliste img {
+        width: 3.2rem; height: 2.4rem; object-fit: cover; border-radius: 8px; flex: 0 0 auto;
+      }
+      .rezeptliste .start {
+        width: 3.2rem; height: 2.4rem; border-radius: 8px; flex: 0 0 auto;
+        display: grid; place-items: center; background: #f3e7d6; font-size: 1.3rem;
+      }
+      .rezeptliste small { display: block; font-weight: 400; color: var(--leise); font-size: .82rem; }
+
+      .abschnitte { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--linie); }
+      .abschnitte a {
+        display: block; padding: .25rem 0 .25rem .8rem; margin-left: -2px;
+        border-left: 2px solid transparent; color: var(--leise); text-decoration: none;
+        font-size: .93rem; line-height: 1.3;
+      }
+      .abschnitte a:hover { color: var(--tinte); }
+      .abschnitte a.hier { color: var(--tomate-dunkel); border-left-color: var(--tomate); font-weight: 600; }
+      .abschnitte li.unter a { padding-left: 1.6rem; font-size: .87rem; }
+
+      .knoepfe { display: flex; flex-direction: column; gap: .5rem; }
+      .knopf {
+        display: flex; align-items: center; justify-content: center; gap: .45rem;
+        padding: .6rem .9rem; border-radius: 10px; border: 1px solid var(--linie);
+        background: var(--karte); color: var(--tinte); font: 600 .95rem "Source Sans 3", sans-serif;
+        text-decoration: none; cursor: pointer;
+      }
+      .knopf:hover { background: #f7efe3; color: var(--tinte); }
+      .knopf.voll { background: var(--tomate); border-color: var(--tomate); color: #fff; }
+      .knopf.voll:hover { background: var(--tomate-dunkel); color: #fff; }
+
+      /* ── Text ─────────────────────────────────────────────────────────── */
+      .inhalt h1, .inhalt h2, .inhalt h3 { font-family: Fraunces, Georgia, serif; line-height: 1.2; color: #2a1b10; }
+      .inhalt h1 { font-size: 2.5rem; margin: 0 0 1rem; letter-spacing: -.015em; }
+      .inhalt h2 { font-size: 1.6rem; margin: 2.4rem 0 .8rem; scroll-margin-top: 1rem; }
+      .inhalt h3 { font-size: 1.22rem; margin: 1.6rem 0 .5rem; scroll-margin-top: 1rem; }
+      .inhalt p { margin: .7rem 0; }
+      .inhalt strong { color: #1d130b; }
+      .inhalt hr { border: 0; height: 1px; background: var(--linie); margin: 2.4rem 0; }
+      .inhalt ul, .inhalt ol { padding-left: 1.4rem; }
+      .inhalt li { margin: .3rem 0; }
+      .inhalt li::marker { color: var(--tomate); }
+
+      .titelbild { margin: 0 0 1.6rem; }
+      .titelbild img {
+        display: block; width: 100%; aspect-ratio: 3 / 2; max-height: 26rem; object-fit: cover;
+        border-radius: var(--rund); box-shadow: var(--schatten);
+      }
+      .titelbild figcaption, .bildnachweis { font-size: .8rem; color: var(--leise); margin-top: .45rem; }
+      .titelbild figcaption a, .bildnachweis a { color: inherit; }
+
+      /* Zubereitung: Schritte mit runden Nummern */
+      .inhalt ol { list-style: none; counter-reset: schritt; padding-left: 0; }
+      .inhalt ol > li {
+        counter-increment: schritt; position: relative; padding: .15rem 0 .15rem 2.7rem; margin: .8rem 0;
+      }
+      .inhalt ol > li::before {
+        content: counter(schritt); position: absolute; left: 0; top: .1rem;
+        width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--tomate); color: #fff;
+        font: 700 .95rem/1.9rem "Source Sans 3", sans-serif; text-align: center;
       }
 
-      /* Kapitelauswahl (aufklappbar, ohne JavaScript) */
-      .chapter-picker { position: relative; display: inline-block; }
-      .chapter-picker summary.print-btn {
-        list-style: none;
-        background: #8250df;
-        user-select: none;
+      /* Zutaten: zum Abhaken antippen */
+      .inhalt ul.zutaten {
+        list-style: none; padding: .6rem .9rem; background: var(--karte);
+        border: 1px solid var(--linie); border-radius: var(--rund);
       }
-      .chapter-picker summary.print-btn:hover { background: #6639ba; }
-      .chapter-picker summary::-webkit-details-marker { display: none; }
-      .chapter-picker[open] summary.print-btn { background: #6639ba; }
-      .chapter-menu {
-        position: absolute;
-        bottom: calc(100% + 0.4rem);
-        left: 0;
-        min-width: 19rem;
-        max-height: 60vh;
-        overflow-y: auto;
-        background: #fff;
-        border: 1px solid #dce6f0;
-        border-radius: 0.4rem;
-        box-shadow: 0 6px 24px rgba(0,0,0,0.15);
-        padding: 0.4rem 0;
-        z-index: 10;
+      .inhalt ul.zutaten li {
+        position: relative; padding: .3rem 0 .3rem 2rem; margin: 0; cursor: pointer;
+        border-bottom: 1px dashed var(--linie); user-select: none;
       }
-      .chapter-menu a {
-        display: block;
-        padding: 0.45rem 1rem;
-        color: #1b1f23;
-        text-decoration: none;
-        font-size: 0.92rem;
-        line-height: 1.3;
+      .inhalt ul.zutaten li:last-child { border-bottom: 0; }
+      .inhalt ul.zutaten li::before {
+        content: ""; position: absolute; left: .1rem; top: .55rem; width: 1.05rem; height: 1.05rem;
+        border: 2px solid #c9b8a2; border-radius: 5px; background: #fff;
       }
-      .chapter-menu a:hover { background: #f3f8f4; color: #159957; }
-      .chapter-menu a.current {
-        font-weight: 700;
-        color: #159957;
-        background: #f3f8f4;
+      .inhalt ul.zutaten li.erledigt { color: #a5978a; text-decoration: line-through; }
+      .inhalt ul.zutaten li.erledigt::before {
+        background: var(--basilikum); border-color: var(--basilikum);
+        box-shadow: inset 0 0 0 2px #fff;
       }
-      @media (max-width: 480px) {
-        .chapter-menu { min-width: 0; width: 80vw; }
+      .hinweis-abhaken { font-size: .85rem; color: var(--leise); margin: -.2rem 0 .4rem; }
+
+      /* Kurzinfo und andere Tabellen */
+      .inhalt table {
+        width: 100%; border-collapse: separate; border-spacing: 0; margin: 1.2rem 0;
+        background: var(--karte); border: 1px solid var(--linie); border-radius: var(--rund);
+        overflow: hidden; font-size: .97rem;
+      }
+      .inhalt th, .inhalt td { padding: .6rem .85rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--linie); }
+      .inhalt tr:last-child td { border-bottom: 0; }
+      .inhalt th {
+        background: #f6ecdf; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: #6b5440;
+      }
+      .tabelle-rollen { overflow-x: auto; }
+
+      /* „💡 Gut zu wissen" */
+      .inhalt blockquote {
+        margin: 1.4rem 0; padding: .9rem 1.2rem; background: var(--zitrone);
+        border: 1px solid #f3dc9c; border-left: 5px solid var(--zitrone-rand); border-radius: var(--rund);
+      }
+      .inhalt blockquote p:first-child { margin-top: 0; }
+      .inhalt blockquote p:last-child, .inhalt blockquote ul:last-child { margin-bottom: 0; }
+
+      /* Startseite: Karten statt Tabelle */
+      /* README-Titel, -Unterzeile und -Inhaltstabelle ersetzen hier die Karten. */
+      .startseite .inhalt > h1, .startseite .inhalt > h1 + p { display: none; }
+      .startseite #inhalt, .startseite #inhalt + table,
+      .startseite #inhalt + .tabelle-rollen { display: none; }
+      .begruessung {
+        font-family: Fraunces, Georgia, serif; font-size: 2.3rem; line-height: 1.15; margin: 0 0 .4rem;
+      }
+      .unterzeile { color: var(--leise); font-size: 1.1rem; margin: 0 0 1.6rem; }
+      .karten {
+        display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; margin: 0 0 2.2rem;
+      }
+      @media (min-width: 1200px) { .karten { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+      @media (max-width: 520px) { .karten { grid-template-columns: minmax(0, 1fr); } }
+      .karte {
+        display: flex; flex-direction: column; background: var(--karte); border: 1px solid var(--linie);
+        border-radius: var(--rund); overflow: hidden; box-shadow: var(--schatten);
+        color: var(--tinte); text-decoration: none; transition: transform .15s, box-shadow .15s;
+      }
+      .karte:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(60,40,20,.08), 0 14px 32px rgba(60,40,20,.14); color: var(--tinte); }
+      .karte img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+      .karte div { padding: .8rem 1rem 1rem; }
+      .karte b { display: block; font-family: Fraunces, Georgia, serif; font-size: 1.2rem; line-height: 1.2; }
+      .karte span { display: block; color: var(--leise); font-size: .93rem; margin-top: .25rem; line-height: 1.35; }
+
+      /* Weiter zum nächsten Rezept */
+      .weiter {
+        display: flex; align-items: center; gap: 1rem; margin-top: 3rem; padding: .8rem;
+        background: var(--karte); border: 1px solid var(--linie); border-radius: var(--rund);
+        box-shadow: var(--schatten); color: var(--tinte); text-decoration: none;
+      }
+      .weiter:hover { color: var(--tinte); background: #fffaf3; }
+      .weiter img { width: 6rem; height: 4rem; object-fit: cover; border-radius: 10px; }
+      .weiter small { display: block; color: var(--leise); font-size: .82rem; text-transform: uppercase; letter-spacing: .08em; }
+      .weiter b { font-family: Fraunces, Georgia, serif; font-size: 1.2rem; }
+      .weiter .pfeil { margin-left: auto; font-size: 1.5rem; color: var(--tomate); padding-right: .4rem; }
+
+      .fuss {
+        max-width: 74rem; margin: 0 auto; padding: 1.5rem 1.25rem 2.5rem; border-top: 1px solid var(--linie);
+        color: var(--leise); font-size: .85rem;
+      }
+      .fuss a { color: inherit; }
+
+      /* ── Schmal: Inhaltsangabe wandert über den Text ──────────────────── */
+      @media (max-width: 900px) {
+        .raster { grid-template-columns: minmax(0, 1fr); gap: 1.2rem; padding-top: 1.2rem; }
+        .leiste { position: static; order: -1; max-height: none; overflow: visible; }
+        .leiste .abschnitte-kasten, .leiste .knoepfe { display: none; }
+        .rezeptliste { flex-direction: row; overflow-x: auto; gap: .5rem; padding-bottom: .2rem; }
+        .rezeptliste a { flex-direction: column; min-width: 7.5rem; text-align: center; font-size: .9rem; }
+        .rezeptliste a small { display: none; }
+        .rezeptliste img, .rezeptliste .start { width: 100%; height: 4rem; }
+        .kopf .marke { font-size: 1.6rem; }
+        .inhalt h1 { font-size: 2rem; }
+        .begruessung { font-size: 1.8rem; }
       }
 
       @media print {
-        @page { size: A4; margin: 2cm 2.2cm; }
-
-        .page-header, .print-buttons, .site-footer { display: none !important; }
-        body { font-size: 11pt; line-height: 1.55; }
-
-        /* Überschrift nie allein am Seitenende */
-        h1, h2, h3, h4 {
-          break-after: avoid;
-          page-break-after: avoid;
-        }
-        /* Ersten Absatz/Liste nach Überschrift mit ihr zusammenhalten */
-        h2 + p, h3 + p, h4 + p,
-        h2 + ul, h3 + ul, h4 + ul,
-        h2 + ol, h3 + ol, h4 + ol,
-        h2 + blockquote, h3 + blockquote {
-          break-before: avoid;
-          page-break-before: avoid;
-        }
-        /* Kästen, Tabellen, Code-Blöcke, Bilder nicht zerreissen */
-        blockquote, pre, table, figure, img {
-          break-inside: avoid;
-          page-break-inside: avoid;
-        }
-        /* Horizontale Trennlinien: neuen Abschnitt nicht am Seitenende beginnen */
-        hr + h2, hr + h3 {
-          break-before: avoid;
-          page-break-before: avoid;
-        }
+        @page { size: A4; margin: 1.8cm 2cm; }
+        body { background: #fff; font-size: 11pt; }
+        .kopf, .leiste, .weiter, .fuss, .hinweis-abhaken { display: none !important; }
+        .raster { display: block; padding: 0; max-width: none; }
+        .titelbild img { max-height: 8cm; box-shadow: none; }
+        .inhalt table, .inhalt ul.zutaten, .karte { box-shadow: none; }
+        h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+        blockquote, table, figure, img, ul.zutaten { break-inside: avoid; page-break-inside: avoid; }
         p { orphans: 3; widows: 3; }
-        a[href]::after { content: none; }
       }
     </style>
   </head>
-  <body>
-    <div class="wrapper">
-      <header class="page-header" role="banner">
-        <h1 class="project-name">
-          <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
-        </h1>
-        <h2 class="project-tagline">{{ site.description }}</h2>
-      </header>
-
-      <main id="content" class="main-content" role="main">
-        {{ content }}
-
-        {%- assign chapters = "01_pizzateig,02_bolognese,03_risotto,04_beef_jerky" | split: "," -%}
-        {%- assign titles = "Pizzateig fürs Blech,Ragù alla Bolognese,Klassisches Risotto,Beef Jerky" | split: "," -%}
-        {%- assign current = page.name | remove: ".md" -%}
-        {%- assign curpos = -1 -%}
-        {%- for c in chapters -%}{%- if c == current -%}{%- assign curpos = forloop.index0 -%}{%- endif -%}{%- endfor -%}
-        {%- assign nextpos = curpos | plus: 1 -%}
-
-        <div class="print-buttons">
-          <div class="btn-row">
-            <button class="print-btn" onclick="window.print()">🖨 Seite ausdrucken</button>
-            <a class="print-btn secondary" href="{{ '/pdfs/Rezeptbuch_komplett.pdf' | relative_url }}" target="_blank">📄 Alles ausdrucken (PDF)</a>
-          </div>
-          <div class="btn-row">
-            <details class="chapter-picker">
-              <summary class="print-btn picker">📖 Rezept wählen</summary>
-              <nav class="chapter-menu">
-                <a href="{{ '/' | relative_url }}"{% if curpos == -1 %} class="current"{% endif %}>Startseite &amp; Inhalt</a>
-                {%- for c in chapters -%}
-                  <a href="{{ c | append: '.html' | relative_url }}"{% if forloop.index0 == curpos %} class="current"{% endif %}>{{ forloop.index }}. {{ titles[forloop.index0] }}</a>
-                {%- endfor -%}
-              </nav>
-            </details>
-            {%- if nextpos < chapters.size -%}
-              {%- assign nextslug = chapters[nextpos] -%}
-              {%- assign nexttitle = titles[nextpos] -%}
-              <a class="print-btn next" href="{{ nextslug | append: '.html' | relative_url }}">{% if curpos == -1 %}Zum ersten Rezept{% else %}Nächstes Rezept{% endif %}: {{ nexttitle }} →</a>
-            {%- endif -%}
-          </div>
+  <body{% if startseite %} class="startseite"{% endif %}>
+    <header class="kopf">
+      <div class="kopf-innen">
+        <span class="topf" aria-hidden="true">🍲</span>
+        <div>
+          <a class="marke" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+          <p>{{ site.description }}</p>
         </div>
+      </div>
+    </header>
 
-        <footer class="site-footer">
-          <span class="site-footer-credits">
-            <a href="https://github.com/metrodorian/Rezeptbuch">Auf GitHub ansehen</a>
-          </span>
-        </footer>
+    <div class="raster">
+      <main class="inhalt" id="inhalt-text">
+        {%- if startseite %}
+        <p class="begruessung">Was kochen wir heute?</p>
+        <p class="unterzeile">Unsere Lieblingsrezepte, aufgeschrieben, damit sie jedes Mal gleich gut gelingen.</p>
+        <div class="karten">
+          {%- for r in rezepte %}
+          <a class="karte" href="{{ r.slug | append: '.html' | relative_url }}">
+            <img src="{{ r.bild | relative_url }}" alt="{{ r.bildtext }}" loading="lazy">
+            <div><b>{{ r.emoji }} {{ r.titel }}</b><span>{{ r.kurz }}</span></div>
+          </a>
+          {%- endfor %}
+        </div>
+        {{ content }}
+        {%- elsif rezept %}
+        {%- assign teile = content | split: "</h1>" -%}
+        {%- if teile.size > 1 -%}
+        {{ teile[0] }}</h1>
+        <figure class="titelbild">
+          <img src="{{ rezept.bild | relative_url }}" alt="{{ rezept.bildtext }}">
+          <figcaption>{{ rezept.bildtext }} · Foto: <a href="{{ rezept.quelle }}">{{ rezept.foto }}</a>, <a href="{{ rezept.lizenz_url }}">{{ rezept.lizenz }}</a>, via Wikimedia Commons</figcaption>
+        </figure>
+        {%- for teil in teile offset: 1 -%}{{ teil }}{%- unless forloop.last -%}</h1>{%- endunless -%}{%- endfor -%}
+        {%- else -%}
+        {{ content }}
+        {%- endif -%}
+        {%- else %}
+        {{ content }}
+        {%- endif %}
+
+        {%- assign nextpos = curpos | plus: 1 -%}
+        {%- if nextpos < rezepte.size and startseite == false %}
+        {%- assign naechstes = rezepte[nextpos] %}
+        <a class="weiter" href="{{ naechstes.slug | append: '.html' | relative_url }}">
+          <img src="{{ naechstes.bild | relative_url }}" alt="" loading="lazy">
+          <span><small>Nächstes Rezept</small><b>{{ naechstes.emoji }} {{ naechstes.titel }}</b></span>
+          <span class="pfeil" aria-hidden="true">→</span>
+        </a>
+        {%- endif %}
       </main>
+
+      <aside class="leiste" aria-label="Inhalt">
+        <nav class="kasten">
+          <h2>Rezepte</h2>
+          <ul class="rezeptliste">
+            <li><a href="{{ '/' | relative_url }}"{% if startseite %} class="aktuell"{% endif %}><span class="start" aria-hidden="true">📖</span><span>Übersicht<small>Einleitung &amp; Maße</small></span></a></li>
+            {%- for r in rezepte %}
+            <li><a href="{{ r.slug | append: '.html' | relative_url }}"{% if forloop.index0 == curpos %} class="aktuell"{% endif %}><img src="{{ r.bild | relative_url }}" alt="" loading="lazy"><span>{{ r.titel }}<small>{{ r.kurz }}</small></span></a></li>
+            {%- endfor %}
+          </ul>
+        </nav>
+        <nav class="kasten abschnitte-kasten" hidden>
+          <h2>Auf dieser Seite</h2>
+          <ul class="abschnitte" id="abschnitte"></ul>
+        </nav>
+        <div class="knoepfe">
+          <button class="knopf voll" onclick="window.print()">🖨 Seite drucken</button>
+          <a class="knopf" href="{{ '/pdfs/Rezeptbuch_komplett.pdf' | relative_url }}" target="_blank">📄 Alles als PDF</a>
+        </div>
+      </aside>
     </div>
-    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+
+    <footer class="fuss">
+      <a href="https://github.com/metrodorian/Rezeptbuch">Auf GitHub ansehen</a>
+      <p class="bildnachweis">Fotos via Wikimedia Commons:
+        {%- for r in rezepte %} {{ r.bildtext }} von <a href="{{ r.quelle }}">{{ r.foto }}</a> (<a href="{{ r.lizenz_url }}">{{ r.lizenz }}</a>){% unless forloop.last %},{% endunless %}{%- endfor %}. Zugeschnitten und verkleinert.</p>
+    </footer>
+
     <script>
-      // Rezeptmenü schließen, wenn man daneben klickt
-      document.addEventListener('click', function (e) {
-        var picker = document.querySelector('.chapter-picker[open]');
-        if (picker && !picker.contains(e.target)) picker.removeAttribute('open');
-      });
+      (function () {
+        var text = document.getElementById("inhalt-text");
+
+        // „Auf dieser Seite": die Abschnitte des Rezepts, der sichtbare hervorgehoben.
+        var koepfe = [].slice.call(text.querySelectorAll("h2[id], h3[id]")).filter(function (h) {
+          return h.offsetParent !== null;
+        });
+        var liste = document.getElementById("abschnitte");
+        if (koepfe.length > 1 && !document.body.classList.contains("startseite")) {
+          koepfe.forEach(function (h) {
+            var li = document.createElement("li");
+            if (h.tagName === "H3") li.className = "unter";
+            var a = document.createElement("a");
+            a.href = "#" + h.id;
+            a.textContent = h.textContent;
+            li.appendChild(a);
+            liste.appendChild(li);
+          });
+          liste.parentNode.hidden = false;
+          var links = liste.querySelectorAll("a");
+          var markieren = function () {
+            var aktiv = 0;
+            koepfe.forEach(function (h, i) { if (h.getBoundingClientRect().top < 140) aktiv = i; });
+            for (var i = 0; i < links.length; i++) links[i].classList.toggle("hier", i === aktiv);
+          };
+          window.addEventListener("scroll", markieren, { passive: true });
+          markieren();
+        }
+
+        // Zutatenlisten zum Abhaken: die erste Liste nach einer Überschrift
+        // mit „Zutaten" oder „Marinade".
+        [].forEach.call(text.querySelectorAll("h2, h3"), function (h) {
+          if (!/zutaten|marinade/i.test(h.textContent)) return;
+          var el = h.nextElementSibling;
+          while (el && !/^(UL|H2|H3)$/.test(el.tagName)) el = el.nextElementSibling;
+          if (!el || el.tagName !== "UL") return;
+          el.classList.add("zutaten");
+          var hinweis = document.createElement("p");
+          hinweis.className = "hinweis-abhaken";
+          hinweis.textContent = "Antippen zum Abhaken";
+          el.parentNode.insertBefore(hinweis, el);
+          el.addEventListener("click", function (e) {
+            var li = e.target.closest("li");
+            if (li) li.classList.toggle("erledigt");
+          });
+        });
+
+        // Breite Tabellen auf dem Handy seitlich rollen statt die Seite zu sprengen.
+        [].forEach.call(text.querySelectorAll("table"), function (t) {
+          var huelle = document.createElement("div");
+          huelle.className = "tabelle-rollen";
+          t.parentNode.insertBefore(huelle, t);
+          huelle.appendChild(t);
+        });
+      })();
     </script>
   </body>
 </html>
