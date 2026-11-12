@@ -15,17 +15,17 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap">
     <style>
       :root {
-        --papier: #fbf6ee;
+        --papier: #f6faf8;
         --karte: #ffffff;
-        --tinte: #2b2118;
-        --leise: #75685c;
-        --linie: #eadfce;
-        --tomate: #c4441c;
-        --tomate-dunkel: #9c3412;
-        --basilikum: #4d7c2a;
-        --zitrone: #fff4d6;
-        --zitrone-rand: #f0c95a;
-        --schatten: 0 1px 2px rgba(60, 40, 20, .06), 0 8px 24px rgba(60, 40, 20, .08);
+        --tinte: #1f2a24;
+        --leise: #5d6b64;
+        --linie: #d9e7df;
+        --gruen: #159957;
+        --gruen-dunkel: #0f7a3e;
+        --basilikum: #159957;
+        --hinweis: #f0f8f3;
+        --hinweis-rand: #2da160;
+        --schatten: 0 1px 2px rgba(20, 50, 35, .06), 0 8px 24px rgba(20, 50, 35, .08);
         --rund: 14px;
       }
       * { box-sizing: border-box; }
@@ -37,13 +37,13 @@
         font: 17px/1.6 "Source Sans 3", -apple-system, "Segoe UI", Roboto, sans-serif;
         -webkit-font-smoothing: antialiased;
       }
-      a { color: var(--tomate); text-decoration-thickness: 1px; text-underline-offset: 2px; }
-      a:hover { color: var(--tomate-dunkel); }
+      a { color: var(--gruen); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+      a:hover { color: var(--gruen-dunkel); }
 
       /* ── Kopf ─────────────────────────────────────────────────────────── */
       .kopf {
-        background: linear-gradient(135deg, #3b2a1d 0%, #5b3a22 55%, #7a4421 100%);
-        color: #fff8ee;
+        background: linear-gradient(120deg, #155799, #159957);
+        color: #fff;
         padding: 1.4rem 1.25rem 1.5rem;
       }
       .kopf-innen { max-width: 74rem; margin: 0 auto; display: flex; align-items: center; gap: 1rem; }
@@ -51,8 +51,8 @@
         font-family: Fraunces, Georgia, serif; font-weight: 700; font-size: 2rem;
         color: inherit; text-decoration: none; letter-spacing: -.01em; line-height: 1.1;
       }
-      .kopf .marke:hover { color: #ffe2c4; }
-      .kopf p { margin: .2rem 0 0; color: #f3dcc4; font-size: 1rem; }
+      .kopf .marke:hover { color: #d9f5e5; }
+      .kopf p { margin: .2rem 0 0; color: rgba(255, 255, 255, .85); font-size: 1rem; }
       .kopf .topf { font-size: 2.6rem; line-height: 1; }
 
       /* ── Seitenraster: Inhalt links, Inhaltsangabe rechts ─────────────── */
@@ -79,14 +79,14 @@
         display: flex; align-items: center; gap: .7rem; padding: .35rem; border-radius: 10px;
         color: var(--tinte); text-decoration: none; line-height: 1.25; font-weight: 600;
       }
-      .rezeptliste a:hover { background: #f7efe3; }
-      .rezeptliste a.aktuell { background: #fbe6dc; color: var(--tomate-dunkel); }
+      .rezeptliste a:hover { background: #eef6f1; }
+      .rezeptliste a.aktuell { background: #dff2e7; color: var(--gruen-dunkel); }
       .rezeptliste img {
         width: 3.2rem; height: 2.4rem; object-fit: cover; border-radius: 8px; flex: 0 0 auto;
       }
       .rezeptliste .start {
         width: 3.2rem; height: 2.4rem; border-radius: 8px; flex: 0 0 auto;
-        display: grid; place-items: center; background: #f3e7d6; font-size: 1.3rem;
+        display: grid; place-items: center; background: #e4f1e9; font-size: 1.3rem;
       }
       .rezeptliste small { display: block; font-weight: 400; color: var(--leise); font-size: .82rem; }
 
@@ -97,7 +97,7 @@
         font-size: .93rem; line-height: 1.3;
       }
       .abschnitte a:hover { color: var(--tinte); }
-      .abschnitte a.hier { color: var(--tomate-dunkel); border-left-color: var(--tomate); font-weight: 600; }
+      .abschnitte a.hier { color: var(--gruen-dunkel); border-left-color: var(--gruen); font-weight: 600; }
       .abschnitte li.unter a { padding-left: 1.6rem; font-size: .87rem; }
 
       .knoepfe { display: flex; flex-direction: column; gap: .5rem; }
@@ -107,21 +107,21 @@
         background: var(--karte); color: var(--tinte); font: 600 .95rem "Source Sans 3", sans-serif;
         text-decoration: none; cursor: pointer;
       }
-      .knopf:hover { background: #f7efe3; color: var(--tinte); }
-      .knopf.voll { background: var(--tomate); border-color: var(--tomate); color: #fff; }
-      .knopf.voll:hover { background: var(--tomate-dunkel); color: #fff; }
+      .knopf:hover { background: #eef6f1; color: var(--tinte); }
+      .knopf.voll { background: var(--gruen); border-color: var(--gruen); color: #fff; }
+      .knopf.voll:hover { background: var(--gruen-dunkel); color: #fff; }
 
       /* ── Text ─────────────────────────────────────────────────────────── */
-      .inhalt h1, .inhalt h2, .inhalt h3 { font-family: Fraunces, Georgia, serif; line-height: 1.2; color: #2a1b10; }
+      .inhalt h1, .inhalt h2, .inhalt h3 { font-family: Fraunces, Georgia, serif; line-height: 1.2; color: #159957; }
       .inhalt h1 { font-size: 2.5rem; margin: 0 0 1rem; letter-spacing: -.015em; }
       .inhalt h2 { font-size: 1.6rem; margin: 2.4rem 0 .8rem; scroll-margin-top: 1rem; }
       .inhalt h3 { font-size: 1.22rem; margin: 1.6rem 0 .5rem; scroll-margin-top: 1rem; }
       .inhalt p { margin: .7rem 0; }
-      .inhalt strong { color: #1d130b; }
+      .inhalt strong { color: #14201a; }
       .inhalt hr { border: 0; height: 1px; background: var(--linie); margin: 2.4rem 0; }
       .inhalt ul, .inhalt ol { padding-left: 1.4rem; }
       .inhalt li { margin: .3rem 0; }
-      .inhalt li::marker { color: var(--tomate); }
+      .inhalt li::marker { color: var(--gruen); }
 
       .titelbild { margin: 0 0 1.6rem; }
       .titelbild img {
@@ -138,7 +138,7 @@
       }
       .inhalt ol > li::before {
         content: counter(schritt); position: absolute; left: 0; top: .1rem;
-        width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--tomate); color: #fff;
+        width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--gruen); color: #fff;
         font: 700 .95rem/1.9rem "Source Sans 3", sans-serif; text-align: center;
       }
 
@@ -154,9 +154,9 @@
       .inhalt ul.zutaten li:last-child { border-bottom: 0; }
       .inhalt ul.zutaten li::before {
         content: ""; position: absolute; left: .1rem; top: .55rem; width: 1.05rem; height: 1.05rem;
-        border: 2px solid #c9b8a2; border-radius: 5px; background: #fff;
+        border: 2px solid #b5cbbf; border-radius: 5px; background: #fff;
       }
-      .inhalt ul.zutaten li.erledigt { color: #a5978a; text-decoration: line-through; }
+      .inhalt ul.zutaten li.erledigt { color: #93a39a; text-decoration: line-through; }
       .inhalt ul.zutaten li.erledigt::before {
         background: var(--basilikum); border-color: var(--basilikum);
         box-shadow: inset 0 0 0 2px #fff;
@@ -172,14 +172,14 @@
       .inhalt th, .inhalt td { padding: .6rem .85rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--linie); }
       .inhalt tr:last-child td { border-bottom: 0; }
       .inhalt th {
-        background: #f6ecdf; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: #6b5440;
+        background: #eef5f1; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: #3d6b52;
       }
       .tabelle-rollen { overflow-x: auto; }
 
       /* „💡 Gut zu wissen" */
       .inhalt blockquote {
-        margin: 1.4rem 0; padding: .9rem 1.2rem; background: var(--zitrone);
-        border: 1px solid #f3dc9c; border-left: 5px solid var(--zitrone-rand); border-radius: var(--rund);
+        margin: 1.4rem 0; padding: .9rem 1.2rem; background: var(--hinweis);
+        border: 1px solid #cfe6d8; border-left: 5px solid var(--hinweis-rand); border-radius: var(--rund);
       }
       .inhalt blockquote p:first-child { margin-top: 0; }
       .inhalt blockquote p:last-child, .inhalt blockquote ul:last-child { margin-bottom: 0; }
@@ -203,7 +203,7 @@
         border-radius: var(--rund); overflow: hidden; box-shadow: var(--schatten);
         color: var(--tinte); text-decoration: none; transition: transform .15s, box-shadow .15s;
       }
-      .karte:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(60,40,20,.08), 0 14px 32px rgba(60,40,20,.14); color: var(--tinte); }
+      .karte:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(20,50,35,.08), 0 14px 32px rgba(20,50,35,.14); color: var(--tinte); }
       .karte img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
       .karte div { padding: .8rem 1rem 1rem; }
       .karte b { display: block; font-family: Fraunces, Georgia, serif; font-size: 1.2rem; line-height: 1.2; }
@@ -215,11 +215,11 @@
         background: var(--karte); border: 1px solid var(--linie); border-radius: var(--rund);
         box-shadow: var(--schatten); color: var(--tinte); text-decoration: none;
       }
-      .weiter:hover { color: var(--tinte); background: #fffaf3; }
+      .weiter:hover { color: var(--tinte); background: #f7fcf9; }
       .weiter img { width: 6rem; height: 4rem; object-fit: cover; border-radius: 10px; }
       .weiter small { display: block; color: var(--leise); font-size: .82rem; text-transform: uppercase; letter-spacing: .08em; }
       .weiter b { font-family: Fraunces, Georgia, serif; font-size: 1.2rem; }
-      .weiter .pfeil { margin-left: auto; font-size: 1.5rem; color: var(--tomate); padding-right: .4rem; }
+      .weiter .pfeil { margin-left: auto; font-size: 1.5rem; color: var(--gruen); padding-right: .4rem; }
 
       .fuss {
         max-width: 74rem; margin: 0 auto; padding: 1.5rem 1.25rem 2.5rem; border-top: 1px solid var(--linie);
