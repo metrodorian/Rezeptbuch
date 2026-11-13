@@ -86,7 +86,8 @@
       }
       .rezeptliste small { display: block; font-weight: 400; color: var(--leise); font-size: .82rem; }
 
-      /* Im Rezept steht rechts statt der Rezeptliste die Zutatenliste - breiter. */
+      /* Im Rezept steht rechts statt der Rezeptliste die Zutatenliste - breiter,
+         auf jeder Bildschirmbreite. */
       .zutaten-kasten, .zurueck, .zutaten-verweis { display: none; }
       .zurueck { font-weight: 600; text-decoration: none; padding: 0 .2rem; }
       .zutaten-kasten h3 {
@@ -104,7 +105,7 @@
         margin: .4rem 0 1rem; padding: .5rem .8rem; border-radius: 10px; background: var(--hinweis);
         color: var(--gruen-dunkel); font-size: .92rem;
       }
-      @media screen and (min-width: 901px) {
+      @media screen {
         body.hat-zutaten .raster { grid-template-columns: minmax(0, 1fr) 22rem; }
         body.hat-zutaten .rezepte-kasten { display: none; }
         body.hat-zutaten .zutaten-kasten, body.hat-zutaten .zurueck { display: block; }
@@ -257,6 +258,7 @@
         .rezeptliste a small { display: none; }
         .rezeptliste img { width: 100%; height: 3.6rem; }
         .knopf { font-size: .82rem; padding: .5rem .4rem; }
+        body.hat-zutaten .raster { grid-template-columns: minmax(0, 1fr) 15rem; }
         .kopf .marke { font-size: 1.6rem; }
         .inhalt h1 { font-size: 2rem; }
         .begruessung { font-size: 1.8rem; }
@@ -267,6 +269,14 @@
         .kasten h2 { font-size: .62rem; letter-spacing: .06em; margin-bottom: .5rem; text-align: center; }
         .rezeptliste a { font-size: .72rem; line-height: 1.15; padding: .25rem; }
         .rezeptliste img { height: 2.8rem; }
+        body.hat-zutaten .raster { grid-template-columns: minmax(0, 1fr) 9.5rem; }
+        .leiste ul.zutaten { font-size: .76rem; line-height: 1.25; }
+        .leiste ul.zutaten li { padding: .25rem 0 .25rem 1.3rem; }
+        .leiste ul.zutaten li::before { top: .32rem; width: .75rem; height: .75rem; border-width: 1.5px; }
+        .zutaten-kasten h3 { font-size: .85rem; margin-top: .7rem; }
+        .leiste .einkauf .knopf { font-size: .74rem; padding: .4rem .3rem; }
+        .leiste .einkauf span { font-size: .72rem; }
+        .zurueck { font-size: .8rem; }
         .kopf { padding: 1rem .9rem; }
         .kopf .topf { font-size: 2rem; }
         .kopf p { font-size: .88rem; }
