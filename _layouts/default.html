@@ -417,8 +417,8 @@
 
         // Einkaufsliste: nur im Heimmonitor. Die Seite liegt auf https, der Pi
         // spricht http - sie fragt darum das Panel, in dessen Rahmen sie
-        // steckt. Antwortet es auf "hallo", gibt es den Knopf. Mit kommen nur
-        // die angehakten Zutaten - man tippt an, was fehlt.
+        // steckt. Antwortet es auf "hallo", gibt es den Knopf. Mit kommen die
+        // angehakten Zutaten - man tippt an, was fehlt -, ohne Haken alle.
         var panel = null, nummer = 0, warten = {};
         function einkaufKnoepfe() {
           var kasten = document.getElementById("zutaten-kasten");
@@ -427,16 +427,18 @@
           if (!document.body.classList.contains("hat-zutaten")) return;
           var rezept = (text.querySelector("h1") || {}).textContent || document.title;
           rezept = rezept.replace(/^[^A-Za-zÀ-ÿ]+/, "").trim();
-          kasten.querySelector("h2").textContent = "Zutaten · antippen, was fehlt";
+          kasten.querySelector("h2").textContent = "Zutaten · antippen, was fehlt (sonst alle)";
           knopf.hidden = false;
           knopf.addEventListener("click", function () {
-            var zutaten = [].map.call(kasten.querySelectorAll("li.erledigt"), function (li) {
+            // Angehakt heißt "fehlt". Ist nichts angehakt, kommt alles mit.
+            var auswahl = kasten.querySelectorAll("li.erledigt");
+            if (!auswahl.length) auswahl = kasten.querySelectorAll("ul.zutaten li");
+            var zutaten = [].map.call(auswahl, function (li) {
               // Klammerzusätze wie „(etwa 1 kleine)" braucht der Einkaufszettel nicht.
               return li.textContent.replace(/\s*\([^)]*\)/g, "").trim();
             });
             meldung.hidden = false;
             meldung.className = "einkauf-meldung";
-            if (!zutaten.length) { meldung.textContent = "Erst unten antippen, was fehlt."; return; }
             knopf.disabled = true;
             meldung.textContent = "Wird eingetragen … (Microsoft braucht manchmal eine halbe Minute)";
             nummer += 1;
