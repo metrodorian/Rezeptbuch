@@ -84,23 +84,38 @@
       .rezeptliste img {
         width: 3.2rem; height: 2.4rem; object-fit: cover; border-radius: 8px; flex: 0 0 auto;
       }
-      .rezeptliste .start {
-        width: 3.2rem; height: 2.4rem; border-radius: 8px; flex: 0 0 auto;
-        display: grid; place-items: center; background: #e4f1e9; font-size: 1.3rem;
-      }
       .rezeptliste small { display: block; font-weight: 400; color: var(--leise); font-size: .82rem; }
 
-      .abschnitte { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--linie); }
-      .abschnitte a {
-        display: block; padding: .25rem 0 .25rem .8rem; margin-left: -2px;
-        border-left: 2px solid transparent; color: var(--leise); text-decoration: none;
-        font-size: .93rem; line-height: 1.3;
+      /* Im Rezept steht rechts statt der Rezeptliste die Zutatenliste - breiter. */
+      .zutaten-kasten, .zurueck, .zutaten-verweis { display: none; }
+      .zurueck { font-weight: 600; text-decoration: none; padding: 0 .2rem; }
+      .zutaten-kasten h3 {
+        font: 700 1rem/1.25 Fraunces, Georgia, serif; color: var(--gruen); margin: 1rem 0 .4rem;
       }
-      .abschnitte a:hover { color: var(--tinte); }
-      .abschnitte a.hier { color: var(--gruen-dunkel); border-left-color: var(--gruen); font-weight: 600; }
-      .abschnitte li.unter a { padding-left: 1.6rem; font-size: .87rem; }
+      .zutaten-kasten h3:first-of-type { margin-top: 0; }
+      .leiste ul.zutaten {
+        list-style: none; margin: 0 0 .5rem; padding: 0; font-size: .95rem; line-height: 1.35;
+      }
+      .leiste ul.zutaten li { padding: .28rem 0 .28rem 1.8rem; }
+      .leiste ul.zutaten li::before { top: .42rem; width: .95rem; height: .95rem; }
+      .leiste .einkauf { flex-direction: column; align-items: stretch; gap: .35rem; margin: 0 0 .4rem; }
+      .leiste .einkauf .knopf { justify-content: center; }
+      .zutaten-verweis {
+        margin: .4rem 0 1rem; padding: .5rem .8rem; border-radius: 10px; background: var(--hinweis);
+        color: var(--gruen-dunkel); font-size: .92rem;
+      }
+      @media screen and (min-width: 901px) {
+        body.hat-zutaten .raster { grid-template-columns: minmax(0, 1fr) 22rem; }
+        body.hat-zutaten .rezepte-kasten { display: none; }
+        body.hat-zutaten .zutaten-kasten, body.hat-zutaten .zurueck { display: block; }
+        body.hat-zutaten .inhalt ul.zutaten, body.hat-zutaten .inhalt .hinweis-abhaken,
+        body.hat-zutaten .inhalt .einkauf, body.hat-zutaten .inhalt .zutaten-kopf { display: none; }
+        body.hat-zutaten .inhalt .zutaten-verweis { display: block; }
+      }
 
-      .knoepfe { display: flex; flex-direction: column; gap: .5rem; }
+      /* Drucken und PDF am Ende des Textes */
+      .knoepfe { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2.8rem; }
+      .knoepfe .knopf { display: inline-flex; }
       .knopf {
         display: flex; align-items: center; justify-content: center; gap: .45rem;
         padding: .6rem .9rem; border-radius: 10px; border: 1px solid var(--linie);
@@ -147,17 +162,17 @@
         list-style: none; padding: .6rem .9rem; background: var(--karte);
         border: 1px solid var(--linie); border-radius: var(--rund);
       }
-      .inhalt ul.zutaten li {
+      ul.zutaten li {
         position: relative; padding: .3rem 0 .3rem 2rem; margin: 0; cursor: pointer;
         border-bottom: 1px dashed var(--linie); user-select: none;
       }
-      .inhalt ul.zutaten li:last-child { border-bottom: 0; }
-      .inhalt ul.zutaten li::before {
+      ul.zutaten li:last-child { border-bottom: 0; }
+      ul.zutaten li::before {
         content: ""; position: absolute; left: .1rem; top: .55rem; width: 1.05rem; height: 1.05rem;
         border: 2px solid #b5cbbf; border-radius: 5px; background: #fff;
       }
-      .inhalt ul.zutaten li.erledigt { color: #93a39a; text-decoration: line-through; }
-      .inhalt ul.zutaten li.erledigt::before {
+      ul.zutaten li.erledigt { color: #93a39a; text-decoration: line-through; }
+      ul.zutaten li.erledigt::before {
         background: var(--basilikum); border-color: var(--basilikum);
         box-shadow: inset 0 0 0 2px #fff;
       }
@@ -217,7 +232,7 @@
 
       /* Weiter zum nächsten Rezept */
       .weiter {
-        display: flex; align-items: center; gap: 1rem; margin-top: 3rem; padding: .8rem;
+        display: flex; align-items: center; gap: 1rem; margin-top: 1.2rem; padding: .8rem;
         background: var(--karte); border: 1px solid var(--linie); border-radius: var(--rund);
         box-shadow: var(--schatten); color: var(--tinte); text-decoration: none;
       }
@@ -237,11 +252,10 @@
       /* ── Schmal: die Inhaltsangabe bleibt rechts, nur schlanker ───────── */
       @media (max-width: 900px) {
         .raster { grid-template-columns: minmax(0, 1fr) 9.5rem; gap: 1rem; padding: 1.2rem .9rem 2.5rem; }
-        .leiste .abschnitte-kasten { display: none; }
         .kasten { padding: .6rem; }
         .rezeptliste a { flex-direction: column; align-items: stretch; gap: .3rem; font-size: .85rem; text-align: center; }
         .rezeptliste a small { display: none; }
-        .rezeptliste img, .rezeptliste .start { width: 100%; height: 3.6rem; }
+        .rezeptliste img { width: 100%; height: 3.6rem; }
         .knopf { font-size: .82rem; padding: .5rem .4rem; }
         .kopf .marke { font-size: 1.6rem; }
         .inhalt h1 { font-size: 2rem; }
@@ -252,8 +266,7 @@
         .kasten { padding: .35rem; }
         .kasten h2 { font-size: .62rem; letter-spacing: .06em; margin-bottom: .5rem; text-align: center; }
         .rezeptliste a { font-size: .72rem; line-height: 1.15; padding: .25rem; }
-        .rezeptliste img, .rezeptliste .start { height: 2.8rem; }
-        .leiste .knoepfe { display: none; }
+        .rezeptliste img { height: 2.8rem; }
         .kopf { padding: 1rem .9rem; }
         .kopf .topf { font-size: 2rem; }
         .kopf p { font-size: .88rem; }
@@ -266,17 +279,17 @@
       @media print {
         @page { size: A4; margin: 1.8cm 2cm; }
         body { background: #fff; font-size: 11pt; }
-        .kopf, .leiste, .weiter, .fuss, .hinweis-abhaken, .einkauf { display: none !important; }
+        .kopf, .leiste, .weiter, .fuss, .hinweis-abhaken, .einkauf, .zutaten-verweis, .knoepfe { display: none !important; }
         .raster { display: block; padding: 0; max-width: none; }
         .titelbild img { max-height: 8cm; box-shadow: none; }
-        .inhalt table, .inhalt ul.zutaten, .karte { box-shadow: none; }
+        .inhalt table, ul.zutaten, .karte { box-shadow: none; }
         h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
         blockquote, table, figure, img, ul.zutaten { break-inside: avoid; page-break-inside: avoid; }
         p { orphans: 3; widows: 3; }
       }
     </style>
   </head>
-  <body{% if startseite %} class="startseite"{% endif %}>
+  <body class="{% if startseite %}startseite{% elsif rezept %}rezept{% endif %}">
     <header class="kopf">
       <div class="kopf-innen">
         <span class="topf" aria-hidden="true">🍲</span>
@@ -317,6 +330,11 @@
         {{ content }}
         {%- endif %}
 
+        <div class="knoepfe">
+          <button class="knopf voll" onclick="window.print()">🖨 Seite drucken</button>
+          <a class="knopf" href="{{ '/pdfs/Rezeptbuch_komplett.pdf' | relative_url }}" target="_blank">📄 Alles als PDF</a>
+        </div>
+
         {%- assign nextpos = curpos | plus: 1 -%}
         {%- if nextpos < rezepte.size and startseite == false %}
         {%- assign naechstes = rezepte[nextpos] %}
@@ -329,23 +347,18 @@
       </main>
 
       <aside class="leiste" aria-label="Inhalt">
-        <nav class="kasten">
+        <a class="zurueck" href="{{ '/' | relative_url }}">← Alle Rezepte</a>
+        <nav class="kasten rezepte-kasten">
           <h2>Rezepte</h2>
           <ul class="rezeptliste">
-            <li><a href="{{ '/' | relative_url }}"{% if startseite %} class="aktuell"{% endif %}><span class="start" aria-hidden="true">📖</span><span>Übersicht<small>Einleitung &amp; Maße</small></span></a></li>
             {%- for r in rezepte %}
             <li><a href="{{ r.slug | append: '.html' | relative_url }}"{% if forloop.index0 == curpos %} class="aktuell"{% endif %}><img src="{{ r.bild | relative_url }}" alt="" loading="lazy"><span>{{ r.titel }}<small>{{ r.kurz }}</small></span></a></li>
             {%- endfor %}
           </ul>
         </nav>
-        <nav class="kasten abschnitte-kasten" hidden>
-          <h2>Auf dieser Seite</h2>
-          <ul class="abschnitte" id="abschnitte"></ul>
-        </nav>
-        <div class="knoepfe">
-          <button class="knopf voll" onclick="window.print()">🖨 Seite drucken</button>
-          <a class="knopf" href="{{ '/pdfs/Rezeptbuch_komplett.pdf' | relative_url }}" target="_blank">📄 Alles als PDF</a>
-        </div>
+        <section class="kasten zutaten-kasten" id="zutaten-kasten">
+          <h2>Zutaten</h2>
+        </section>
       </aside>
     </div>
 
@@ -360,34 +373,6 @@
       (function () {
         var text = document.getElementById("inhalt-text");
 
-        // „Auf dieser Seite": die Abschnitte des Rezepts, der sichtbare hervorgehoben.
-        var koepfe = [].slice.call(text.querySelectorAll("h2[id], h3[id]")).filter(function (h) {
-          return h.offsetParent !== null;
-        });
-        // Bei vielen Teilrezepten nur die Hauptabschnitte, sonst wird die Liste zu lang.
-        if (koepfe.length > 10) koepfe = koepfe.filter(function (h) { return h.tagName === "H2"; });
-        var liste = document.getElementById("abschnitte");
-        if (koepfe.length > 1 && !document.body.classList.contains("startseite")) {
-          koepfe.forEach(function (h) {
-            var li = document.createElement("li");
-            if (h.tagName === "H3") li.className = "unter";
-            var a = document.createElement("a");
-            a.href = "#" + h.id;
-            a.textContent = h.textContent;
-            li.appendChild(a);
-            liste.appendChild(li);
-          });
-          liste.parentNode.hidden = false;
-          var links = liste.querySelectorAll("a");
-          var markieren = function () {
-            var aktiv = 0;
-            koepfe.forEach(function (h, i) { if (h.getBoundingClientRect().top < 140) aktiv = i; });
-            for (var i = 0; i < links.length; i++) links[i].classList.toggle("hier", i === aktiv);
-          };
-          window.addEventListener("scroll", markieren, { passive: true });
-          markieren();
-        }
-
         // Zutatenlisten zum Abhaken: die erste Liste nach einer Überschrift
         // mit „Zutaten" oder „Marinade".
         [].forEach.call(text.querySelectorAll("h2, h3"), function (h) {
@@ -400,11 +385,42 @@
           hinweis.className = "hinweis-abhaken";
           hinweis.textContent = "Antippen zum Abhaken";
           el.parentNode.insertBefore(hinweis, el);
-          el.addEventListener("click", function (e) {
+          abhakbar(el);
+
+          // Auf breiten Schirmen steht die Liste rechts in der Leiste. Im Text
+          // bleibt sie trotzdem: zum Drucken und für schmale Schirme, wo rechts
+          // die Rezepte stehen. Heißt die Überschrift nur „Zutaten", verschwindet
+          // sie im Text mit; sonst bleibt ein Verweis nach rechts.
+          var kasten = document.getElementById("zutaten-kasten");
+          var titel = h.textContent.trim();
+          if (/^zutaten$/i.test(titel)) {
+            h.classList.add("zutaten-kopf");
+            var oben = h;
+            while (oben && (oben.tagName !== "H2" || oben === h)) oben = oben.previousElementSibling;
+            titel = h.tagName === "H3" && oben ? oben.textContent.split(":")[0].trim() : "";
+          } else {
+            var verweis = document.createElement("p");
+            verweis.className = "zutaten-verweis";
+            verweis.textContent = "→ Die Zutaten stehen rechts.";
+            el.parentNode.insertBefore(verweis, el);
+          }
+          if (titel) {
+            var unter = document.createElement("h3");
+            unter.textContent = titel;
+            kasten.appendChild(unter);
+          }
+          var kopie = el.cloneNode(true);
+          kasten.appendChild(kopie);
+          abhakbar(kopie);
+          document.body.classList.add("hat-zutaten");
+        });
+
+        function abhakbar(ul) {
+          ul.addEventListener("click", function (e) {
             var li = e.target.closest("li");
             if (li) li.classList.toggle("erledigt");
           });
-        });
+        }
 
         // Einkaufsliste: nur im Heimmonitor. Die Seite liegt auf https, der Pi
         // spricht http - sie fragt darum das Panel, in dessen Rahmen sie
@@ -414,7 +430,7 @@
         function einkaufKnoepfe() {
           var rezept = (text.querySelector("h1") || {}).textContent || document.title;
           rezept = rezept.replace(/^[^A-Za-zÀ-ÿ]+/, "").trim();
-          [].forEach.call(text.querySelectorAll("ul.zutaten"), function (ul) {
+          [].forEach.call(document.querySelectorAll("ul.zutaten"), function (ul) {
             var zeile = document.createElement("div");
             zeile.className = "einkauf";
             var knopf = document.createElement("button");
@@ -425,6 +441,8 @@
             var hinweis = ul.previousElementSibling;
             if (hinweis && hinweis.classList.contains("hinweis-abhaken"))
               hinweis.textContent = "Antippen, was eingekauft werden muss";
+            var leiste = document.querySelector("#zutaten-kasten > h2");
+            if (leiste) leiste.textContent = "Zutaten · antippen, was fehlt";
             zeile.appendChild(knopf);
             zeile.appendChild(meldung);
             ul.parentNode.insertBefore(zeile, ul.nextSibling);
