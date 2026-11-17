@@ -217,6 +217,10 @@
       }
       .karte:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(20,50,35,.08), 0 14px 32px rgba(20,50,35,.14); color: var(--tinte); }
       .karte img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+      /* Rezept ohne Foto (etwa aus der Nährwerte-App): das Emoji auf hellem Grün */
+      .ohne-bild { display: flex; align-items: center; justify-content: center; background: #eef7f1; }
+      .karte .ohne-bild { display: flex; width: 100%; aspect-ratio: 3 / 2; font-size: 4rem; margin: 0; line-height: 1; }
+      .weiter .ohne-bild { width: 6rem; height: 4rem; border-radius: 10px; font-size: 2rem; }
       .karte div { padding: .8rem 1rem 1rem; }
       .karte b { display: block; font-family: Fraunces, Georgia, serif; font-size: 1.2rem; line-height: 1.2; }
       .karte span { display: block; color: var(--leise); font-size: .93rem; margin-top: .25rem; line-height: 1.35; }
@@ -303,7 +307,7 @@
         <div class="karten">
           {%- for r in rezepte %}
           <a class="karte" href="{{ r.slug | append: '.html' | relative_url }}">
-            <img src="{{ r.bild | relative_url }}" alt="{{ r.bildtext }}" loading="lazy">
+            {%- if r.bild %}<img src="{{ r.bild | relative_url }}" alt="{{ r.bildtext }}" loading="lazy">{% else %}<span class="ohne-bild" aria-hidden="true">{{ r.emoji }}</span>{% endif %}
             <div><b>{{ r.emoji }} {{ r.titel }}</b><span>{{ r.kurz }}</span></div>
           </a>
           {%- endfor %}
@@ -311,7 +315,7 @@
         {{ content }}
         {%- elsif rezept %}
         {%- assign teile = content | split: "</h1>" -%}
-        {%- if teile.size > 1 -%}
+        {%- if teile.size > 1 and rezept.bild -%}
         {{ teile[0] }}</h1>
         <figure class="titelbild">
           <img src="{{ rezept.bild | relative_url }}" alt="{{ rezept.bildtext }}">
@@ -334,7 +338,7 @@
         {%- if nextpos < rezepte.size and startseite == false %}
         {%- assign naechstes = rezepte[nextpos] %}
         <a class="weiter" href="{{ naechstes.slug | append: '.html' | relative_url }}">
-          <img src="{{ naechstes.bild | relative_url }}" alt="" loading="lazy">
+          {%- if naechstes.bild %}<img src="{{ naechstes.bild | relative_url }}" alt="" loading="lazy">{% else %}<span class="ohne-bild" aria-hidden="true">{{ naechstes.emoji }}</span>{% endif %}
           <span><small>Nächstes Rezept</small><b>{{ naechstes.emoji }} {{ naechstes.titel }}</b></span>
           <span class="pfeil" aria-hidden="true">→</span>
         </a>

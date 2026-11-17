@@ -25,6 +25,7 @@ Damit du dich schnell zurechtfindest, folgt jedes Rezept demselben Muster:
 | 3 | [Klassisches Risotto](03_risotto.md) | Cremiges Grundrezept mit drei Varianten |
 | 4 | [Beef Jerky](04_beef_jerky.md) | Rindfleisch aus dem Dörrgerät, sicher vorerhitzt |
 | 5 | [Ichiju-Sansai](05_ichiju_sansai.md) | Japanisches Frühstück: Reis, Miso-Suppe und drei Beilagen |
+| 6 | [Nudeln mit Spinat-Quark-Soße](06_nudeln_spinat_quark.md) | Cremig ohne Sahne, mit Champignons, glutenfrei |
 
 ## Maße und Umrechnung
 
